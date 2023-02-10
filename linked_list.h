@@ -36,10 +36,9 @@ class LinkedList {
 
     LinkedList* InsertBegin(T value) {
         Node* new_node = new Node(value);
-
         new_node->next_ = head_;
         head_ = new_node;
-
+        ++size_;
         return *this;
     }
 
@@ -47,6 +46,7 @@ class LinkedList {
         Node* new_node = new Node(value);
         if (head_ == nullptr) {
             head_ = new_node;
+            ++size_;
             return *this;
         }
 
@@ -55,7 +55,7 @@ class LinkedList {
             temp = temp->next_;
         }
         temp->next_ = new_node;
-
+        ++size_;
         return *this;
     }
 
@@ -78,7 +78,7 @@ class LinkedList {
         }
         new_node->next_ = temp->next_;
         temp->next_ = new_node;
-
+        ++size_;
         return *this;
     }
 
@@ -91,7 +91,7 @@ class LinkedList {
         Node* temp = head_;
         head_ = temp->next_;
         delete temp;
-
+        --size_;
         return *this;
     }
 
@@ -105,16 +105,42 @@ class LinkedList {
         if (head_->next == nullptr) {
             head_ = nullptr;
             delete temp;
+            --size_;
             return *this;
         }
-        Node* temp2 = head_;
+        Node* temp2;
         while (temp->next_ != nullptr) {
             temp2 = temp;
             temp = temp->next_;
         }
         temp2->next_ = nullptr;
         delete temp;
+        --size_;
+        return *this;
+    }
 
+    LinkedList* RemovePos(int pos) {
+        if (pos >= size_) {
+            std::cerr << "Invalid position\n";
+            return *this;
+        } else if (pos == 0) {
+            RemoveBegin();
+            return *this;
+        } else if (pos == size - 1) {
+            RemoveEnd();
+            return *this;
+        }
+
+        Node* new_node = new Node(value);
+        Node* temp = head_;
+        Node* temp2;
+        for (int i = 0; i < pos; ++i) {
+            temp2 = temp;
+            temp = temp->next_;
+        }
+        temp2->next = nullptr;
+        delete temp;
+        --size_;
         return *this;
     }
 };
