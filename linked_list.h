@@ -36,8 +36,22 @@ class LinkedList {
 
     LinkedList* InsertBegin(T value) {
         Node* new_node = new Node(value);
+
         new_node->next_ = head_;
         head_ = new_node;
+
+        return *this;
+    }
+
+    LinkedList* InsertEnd(T value) {
+        Node* new_node = new Node(value);
+        Node* temp = head_;
+
+        while (temp->next_ != nullptr) {
+            temp = temp->next_;
+        }
+        temp->next_ = new_node;
+
         return *this;
     }
 };
