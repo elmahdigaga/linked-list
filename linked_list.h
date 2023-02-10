@@ -13,4 +13,11 @@ class Node {
     }
 };
 
+template <class T>
+class LinkedList {
+   private:
+    Node* head_;
+    int size_;
+};
+
 #endif
