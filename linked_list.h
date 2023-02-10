@@ -45,11 +45,38 @@ class LinkedList {
 
     LinkedList* InsertEnd(T value) {
         Node* new_node = new Node(value);
-        Node* temp = head_;
+        if (head_ == nullptr) {
+            head_ = new_node;
+            return *this;
+        }
 
+        Node* temp = head_;
         while (temp->next_ != nullptr) {
             temp = temp->next_;
         }
+        temp->next_ = new_node;
+
+        return *this;
+    }
+
+    LinkedList* InsertPos(T value, int pos) {
+        if (pos > size_) {
+            std::cerr << "Invalid position\n";
+            return *this;
+        } else if (pos == 0) {
+            InsertBegin(value);
+            return *this;
+        } else if (pos == size) {
+            InsertEnd(value);
+            return *this;
+        }
+
+        Node* new_node = new Node(value);
+        Node* temp = head_;
+        for (int i = 0; i < pos - 1; ++i) {
+            temp = temp->next_;
+        }
+        new_node->next_ = temp->next_;
         temp->next_ = new_node;
 
         return *this;
