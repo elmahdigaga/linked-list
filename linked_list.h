@@ -18,6 +18,21 @@ class LinkedList {
    private:
     Node* head_;
     int size_;
+
+   public:
+    LinkedList() {
+        head_ = nullptr;
+        size = 0;
+    }
+
+    ~LinkedList() {
+        Node* temp = head_;
+        while (temp != nullptr) {
+            Node* toDelete = temp;
+            temp = temp->next_;
+            delete toDelete;
+        }
+    }
 };
 
 #endif
