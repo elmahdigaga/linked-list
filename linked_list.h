@@ -195,6 +195,10 @@ class LinkedList {
         RemovePos(pos);
         return *this;
     }
+
+    bool IsEmpty() {
+        return head_ == nullptr ? true : false;
+    }
 };
 
 #endif
