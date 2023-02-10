@@ -8,8 +8,8 @@ class Node {
     Node* next_;
 
     Node(T value) {
-        this->data = value;
-        this->next = nullptr;
+        this->data_ = value;
+        this->next_ = nullptr;
     }
 };
 
