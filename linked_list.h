@@ -94,6 +94,29 @@ class LinkedList {
 
         return *this;
     }
+
+    LinkedList* RemoveEnd() {
+        if (head_ == nullptr) {
+            std::cerr << "List is empty\n";
+            return *this;
+        }
+
+        Node* temp = head_;
+        if (head_->next == nullptr) {
+            head_ = nullptr;
+            delete temp;
+            return *this;
+        }
+        Node* temp2 = head_;
+        while (temp->next_ != nullptr) {
+            temp2 = temp;
+            temp = temp->next_;
+        }
+        temp2->next_ = nullptr;
+        delete temp;
+
+        return *this;
+    }
 };
 
 #endif
