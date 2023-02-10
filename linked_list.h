@@ -4,8 +4,8 @@
 template <class T>
 class Node {
    public:
-    T data;
-    Node* next;
+    T data_;
+    Node* next_;
 
     Node(T value) {
         this->data = value;
