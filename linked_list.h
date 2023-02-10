@@ -162,6 +162,24 @@ class LinkedList {
         --size_;
         return *this;
     }
+
+    int Find(T value) {
+        if (head_ == nullptr) {
+            std::cerr << "List is empty\n";
+            return -1;
+        }
+        int pos = 0;
+        Node<T>* temp = head_;
+        while (temp != nullptr) {
+            if (temp->data_ == value) {
+                return pos;
+            }
+            temp = temp->next_;
+            ++pos;
+        }
+
+        return -1;
+    }
 };
 
 #endif

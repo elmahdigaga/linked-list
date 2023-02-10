@@ -16,6 +16,7 @@ int main() {
         printf("6 - Remove from a position\n");
         printf("7 - Print\n");
         printf("8 - Size of list\n");
+        printf("9 - Find\n");
         printf("0 - Quit\n\n> ");
         scanf("%d", &option);
 
@@ -70,6 +71,12 @@ int main() {
             }
             case 8: {
                 std::cout << test.Size() << std::endl;
+                break;
+            }
+            case 9: {
+                printf("Enter a value:\n> ");
+                scanf("%d", &value);
+                std::cout << "Position of " << value << "is: " << test.Find(value) << std::endl;
                 break;
             }
 
