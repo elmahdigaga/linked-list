@@ -34,6 +34,20 @@ class LinkedList {
         }
     }
 
+    void Print() {
+        if (head_ == nullptr) {
+            std::cout << "List is empty\n";
+            return;
+        }
+
+        Node* temp = head_;
+        while (temp != nullptr) {
+            std::cout << temp->data_ << " -> ";
+            temp = temp->next_;
+        }
+        std::cout << "NULL\n";
+    }
+
     LinkedList* InsertBegin(T value) {
         Node* new_node = new Node(value);
         new_node->next_ = head_;
