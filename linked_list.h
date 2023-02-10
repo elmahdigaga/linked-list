@@ -28,9 +28,9 @@ class LinkedList {
     ~LinkedList() {
         Node* temp = head_;
         while (temp != nullptr) {
-            Node* toDelete = temp;
+            Node* to_delete = temp;
             temp = temp->next_;
-            delete toDelete;
+            delete to_delete;
         }
     }
 };
