@@ -33,6 +33,13 @@ class LinkedList {
             delete to_delete;
         }
     }
+
+    LinkedList* InsertBegin(T value) {
+        Node* new_node = new Node(value);
+        new_node->next_ = head_;
+        head_ = new_node;
+        return *this;
+    }
 };
 
 #endif
