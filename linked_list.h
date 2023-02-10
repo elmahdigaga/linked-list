@@ -1,11 +1,13 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <iostream>
+
 template <class T>
 class Node {
    public:
     T data_;
-    Node* next_;
+    Node<T>* next_;
 
     Node(T value) {
         this->data_ = value;
@@ -16,19 +18,19 @@ class Node {
 template <class T>
 class LinkedList {
    private:
-    Node* head_;
+    Node<T>* head_;
     int size_;
 
    public:
     LinkedList() {
         head_ = nullptr;
-        size = 0;
+        size_ = 0;
     }
 
     ~LinkedList() {
-        Node* temp = head_;
+        Node<T>* temp = head_;
         while (temp != nullptr) {
-            Node* to_delete = temp;
+            Node<T>* to_delete = temp;
             temp = temp->next_;
             delete to_delete;
         }
@@ -40,7 +42,7 @@ class LinkedList {
             return;
         }
 
-        Node* temp = head_;
+        Node<T>* temp = head_;
         while (temp != nullptr) {
             std::cout << temp->data_ << " -> ";
             temp = temp->next_;
@@ -48,23 +50,23 @@ class LinkedList {
         std::cout << "NULL\n";
     }
 
-    LinkedList* InsertBegin(T value) {
-        Node* new_node = new Node(value);
+    LinkedList& InsertBegin(T value) {
+        Node<T>* new_node = new Node(value);
         new_node->next_ = head_;
         head_ = new_node;
         ++size_;
         return *this;
     }
 
-    LinkedList* InsertEnd(T value) {
-        Node* new_node = new Node(value);
+    LinkedList& InsertEnd(T value) {
+        Node<T>* new_node = new Node(value);
         if (head_ == nullptr) {
             head_ = new_node;
             ++size_;
             return *this;
         }
 
-        Node* temp = head_;
+        Node<T>* temp = head_;
         while (temp->next_ != nullptr) {
             temp = temp->next_;
         }
@@ -73,20 +75,20 @@ class LinkedList {
         return *this;
     }
 
-    LinkedList* InsertPos(T value, int pos) {
+    LinkedList& InsertPos(T value, int pos) {
         if (pos > size_) {
             std::cerr << "Invalid position\n";
             return *this;
         } else if (pos == 0) {
             InsertBegin(value);
             return *this;
-        } else if (pos == size) {
+        } else if (pos == size_) {
             InsertEnd(value);
             return *this;
         }
 
-        Node* new_node = new Node(value);
-        Node* temp = head_;
+        Node<T>* new_node = new Node(value);
+        Node<T>* temp = head_;
         for (int i = 0; i < pos - 1; ++i) {
             temp = temp->next_;
         }
@@ -96,33 +98,33 @@ class LinkedList {
         return *this;
     }
 
-    LinkedList* RemoveBegin() {
+    LinkedList& RemoveBegin() {
         if (head_ == nullptr) {
             std::cerr << "List is empty\n";
             return *this;
         }
 
-        Node* temp = head_;
+        Node<T>* temp = head_;
         head_ = temp->next_;
         delete temp;
         --size_;
         return *this;
     }
 
-    LinkedList* RemoveEnd() {
+    LinkedList& RemoveEnd() {
         if (head_ == nullptr) {
             std::cerr << "List is empty\n";
             return *this;
         }
 
-        Node* temp = head_;
-        if (head_->next == nullptr) {
+        Node<T>* temp = head_;
+        if (head_->next_ == nullptr) {
             head_ = nullptr;
             delete temp;
             --size_;
             return *this;
         }
-        Node* temp2;
+        Node<T>* temp2;
         while (temp->next_ != nullptr) {
             temp2 = temp;
             temp = temp->next_;
@@ -133,26 +135,25 @@ class LinkedList {
         return *this;
     }
 
-    LinkedList* RemovePos(int pos) {
+    LinkedList& RemovePos(int pos) {
         if (pos >= size_) {
             std::cerr << "Invalid position\n";
             return *this;
         } else if (pos == 0) {
             RemoveBegin();
             return *this;
-        } else if (pos == size - 1) {
+        } else if (pos == size_ - 1) {
             RemoveEnd();
             return *this;
         }
 
-        Node* new_node = new Node(value);
-        Node* temp = head_;
-        Node* temp2;
+        Node<T>* temp = head_;
+        Node<T>* temp2;
         for (int i = 0; i < pos; ++i) {
             temp2 = temp;
             temp = temp->next_;
         }
-        temp2->next = nullptr;
+        temp2->next_ = temp->next_;
         delete temp;
         --size_;
         return *this;
