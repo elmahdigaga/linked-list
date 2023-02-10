@@ -199,6 +199,21 @@ class LinkedList {
     bool IsEmpty() {
         return head_ == nullptr ? true : false;
     }
+
+    T* ToArray() {
+        if (head_ == nullptr) {
+            std::cerr << "List is empty\n";
+            return nullptr;
+        }
+
+        T* array = new T[size_];
+        Node<T>* temp = head_;
+        for (int i = 0; i < size_; ++i) {
+            array[i] = temp->data_;
+            temp = temp->next_;
+        }
+        return array;
+    }
 };
 
 #endif

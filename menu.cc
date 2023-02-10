@@ -2,6 +2,15 @@
 
 #include "linked_list.h"
 
+void printArray(int* arr, int size) {
+    std::cout << "[";
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i];
+        if (i < size - 1) std::cout << ", ";
+    }
+    std::cout << "]\n";
+}
+
 int main() {
     LinkedList<int> test;
 
@@ -18,6 +27,7 @@ int main() {
         printf("8 - Print\n");
         printf("9 - Size of list\n");
         printf("10 - Find\n");
+        printf("11 - Transform to array\n");
         printf("0 - Quit\n\n> ");
         scanf("%d", &option);
 
@@ -84,6 +94,11 @@ int main() {
                 printf("Enter a value:\n> ");
                 scanf("%d", &value);
                 std::cout << "Position of " << value << "is: " << test.Find(value) << std::endl;
+                break;
+            }
+            case 11: {
+                int* arr = test.ToArray();
+                printArray(arr, test.Size());
                 break;
             }
 
