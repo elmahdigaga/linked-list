@@ -28,6 +28,7 @@ int main() {
         printf("9 - Size of list\n");
         printf("10 - Find\n");
         printf("11 - Transform to array\n");
+        printf("12 - Get a value by index\n");
         printf("0 - Quit\n\n> ");
         scanf("%d", &option);
 
@@ -99,6 +100,12 @@ int main() {
             case 11: {
                 int* arr = test.ToArray();
                 printArray(arr, test.Size());
+                break;
+            }
+            case 12: {
+                printf("Enter an index:\n> ");
+                scanf("%d", &index);
+                std::cout << test.Get(index) << std::endl;
                 break;
             }
 

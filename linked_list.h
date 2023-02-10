@@ -163,6 +163,23 @@ class LinkedList {
         return *this;
     }
 
+    T Get(int pos) {
+        if (head_ == nullptr) {
+            std::cerr << "List is empty\n";
+            return 0;
+        }
+        if (pos >= size_) {
+            std::cerr << "Invalid index\n";
+            return 0;
+        }
+
+        Node<T>* temp = head_;
+        for (int i = 0; i < pos; ++i) {
+            temp = temp->next_;
+        }
+        return temp->data_;
+    }
+
     int Find(T value) {
         if (head_ == nullptr) {
             std::cerr << "List is empty\n";
