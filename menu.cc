@@ -15,12 +15,7 @@ int main() {
         printf("5 - Remove from end\n");
         printf("6 - Remove from a position\n");
         printf("7 - Print\n");
-        /*
-        printf("8 - Find the index of an element\n");
-        printf("9 - Sort the array\n");
-        printf("10 - Reverse the array\n");
-        printf("11 - Print the array\n");
-        */
+        printf("8 - Size of list\n");
         printf("0 - Quit\n\n> ");
         scanf("%d", &option);
 
@@ -72,28 +67,11 @@ int main() {
             case 7: {
                 test.Print();
                 break;
-            } /*
-             case 8: {
-                 printf("Enter a value:\n> ");
-                 scanf("%d", &value);
-                 printf("Index of %d is: %d\n", value, test.find(value));
-                 break;
-             }
-             case 9: {
-                 test.sort();
-                 printf("Array sorted\n");
-                 break;
-             }
-             case 10: {
-                 test.reverse();
-                 printf("Array reversed\n");
-                 break;
-             }
-             case 11: {
-                 test.print();
-                 printf("\n");
-                 break;
-             }*/
+            }
+            case 8: {
+                std::cout << test.Size() << std::endl;
+                break;
+            }
 
             default: {
                 printf("Invalid input!\n");

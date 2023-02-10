@@ -50,6 +50,10 @@ class LinkedList {
         std::cout << "NULL\n";
     }
 
+    int Size() {
+        return size_;
+    }
+
     LinkedList& InsertBegin(T value) {
         Node<T>* new_node = new Node(value);
         new_node->next_ = head_;
