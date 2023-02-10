@@ -180,6 +180,21 @@ class LinkedList {
 
         return -1;
     }
+
+    LinkedList& Delete(T value) {
+        if (head_ == nullptr) {
+            std::cerr << "List is empty\n";
+            return *this;
+        }
+
+        int pos = Find(value);
+        if (pos == -1) {
+            std::cerr << "Value not found\n";
+            return *this;
+        }
+        RemovePos(pos);
+        return *this;
+    }
 };
 
 #endif

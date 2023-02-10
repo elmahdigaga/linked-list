@@ -14,9 +14,10 @@ int main() {
         printf("4 - Remove from beginning\n");
         printf("5 - Remove from end\n");
         printf("6 - Remove from a position\n");
-        printf("7 - Print\n");
-        printf("8 - Size of list\n");
-        printf("9 - Find\n");
+        printf("7 - Remove a value\n");
+        printf("8 - Print\n");
+        printf("9 - Size of list\n");
+        printf("10 - Find\n");
         printf("0 - Quit\n\n> ");
         scanf("%d", &option);
 
@@ -66,14 +67,20 @@ int main() {
                 break;
             }
             case 7: {
-                test.Print();
+                printf("Enter a value:\n> ");
+                scanf("%d", &value);
+                test.Delete(value);
                 break;
             }
             case 8: {
-                std::cout << test.Size() << std::endl;
+                test.Print();
                 break;
             }
             case 9: {
+                std::cout << test.Size() << std::endl;
+                break;
+            }
+            case 10: {
                 printf("Enter a value:\n> ");
                 scanf("%d", &value);
                 std::cout << "Position of " << value << "is: " << test.Find(value) << std::endl;
