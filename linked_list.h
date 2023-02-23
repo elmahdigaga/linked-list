@@ -19,19 +19,22 @@ template <class T>
 class LinkedList {
    private:
     Node<T>* head;
+    Node<T>* tail;
+    Node<T>* cursor;
     int size;
 
    public:
     LinkedList() {
         head = nullptr;
+        tail = nullptr;
         size = 0;
     }
 
     ~LinkedList() {
-        Node<T>* temp = head;
-        while (temp != nullptr) {
-            Node<T>* to_delete = temp;
-            temp = temp->next;
+        cursor = head;
+        while (cursor != nullptr) {
+            Node<T>* to_delete = cursor;
+            cursor = cursor->next;
             delete to_delete;
         }
     }
@@ -42,10 +45,10 @@ class LinkedList {
             return;
         }
 
-        Node<T>* temp = head;
-        while (temp != nullptr) {
-            std::cout << temp->data << " -> ";
-            temp = temp->next;
+        cursor = head;
+        while (cursor != nullptr) {
+            std::cout << cursor->data << " -> ";
+            cursor = cursor->next;
         }
         std::cout << "NULL\n";
     }
@@ -55,9 +58,9 @@ class LinkedList {
     }
 
     LinkedList& InsertBegin(T value) {
-        Node<T>* new_node = new Node(value);
-        new_node->next = head;
-        head = new_node;
+        cursor = new Node(value);
+        cursor->next = head;
+        head = cursor;
         ++size;
         return *this;
     }
@@ -70,11 +73,11 @@ class LinkedList {
             return *this;
         }
 
-        Node<T>* temp = head;
-        while (temp->next != nullptr) {
-            temp = temp->next;
+        cursor = head;
+        while (cursor->next != nullptr) {
+            cursor = cursor->next;
         }
-        temp->next = new_node;
+        cursor->next = new_node;
         ++size;
         return *this;
     }
@@ -92,12 +95,12 @@ class LinkedList {
         }
 
         Node<T>* new_node = new Node(value);
-        Node<T>* temp = head;
+        cursor = head;
         for (int i = 0; i < pos - 1; ++i) {
-            temp = temp->next;
+            cursor = cursor->next;
         }
-        new_node->next = temp->next;
-        temp->next = new_node;
+        new_node->next = cursor->next;
+        cursor->next = new_node;
         ++size;
         return *this;
     }
@@ -108,9 +111,9 @@ class LinkedList {
             return *this;
         }
 
-        Node<T>* temp = head;
-        head = temp->next;
-        delete temp;
+        cursor = head;
+        head = cursor->next;
+        delete cursor;
         --size;
         return *this;
     }
@@ -121,20 +124,20 @@ class LinkedList {
             return *this;
         }
 
-        Node<T>* temp = head;
+        cursor = head;
         if (head->next == nullptr) {
             head = nullptr;
-            delete temp;
+            delete cursor;
             --size;
             return *this;
         }
         Node<T>* temp2;
-        while (temp->next != nullptr) {
-            temp2 = temp;
-            temp = temp->next;
+        while (cursor->next != nullptr) {
+            temp2 = cursor;
+            cursor = cursor->next;
         }
         temp2->next = nullptr;
-        delete temp;
+        delete cursor;
         --size;
         return *this;
     }
@@ -151,14 +154,14 @@ class LinkedList {
             return *this;
         }
 
-        Node<T>* temp = head;
+        cursor = head;
         Node<T>* temp2;
         for (int i = 0; i < pos; ++i) {
-            temp2 = temp;
-            temp = temp->next;
+            temp2 = cursor;
+            cursor = cursor->next;
         }
-        temp2->next = temp->next;
-        delete temp;
+        temp2->next = cursor->next;
+        delete cursor;
         --size;
         return *this;
     }
@@ -173,11 +176,11 @@ class LinkedList {
             return 0;
         }
 
-        Node<T>* temp = head;
+        cursor = head;
         for (int i = 0; i < pos; ++i) {
-            temp = temp->next;
+            cursor = cursor->next;
         }
-        return temp->data;
+        return cursor->data;
     }
 
     int Find(T value) {
@@ -186,12 +189,12 @@ class LinkedList {
             return -1;
         }
         int pos = 0;
-        Node<T>* temp = head;
-        while (temp != nullptr) {
-            if (temp->data == value) {
+        cursor = head;
+        while (cursor != nullptr) {
+            if (cursor->data == value) {
                 return pos;
             }
-            temp = temp->next;
+            cursor = cursor->next;
             ++pos;
         }
 
@@ -224,10 +227,10 @@ class LinkedList {
         }
 
         T* array = new T[size];
-        Node<T>* temp = head;
+        cursor = head;
         for (int i = 0; i < size; ++i) {
-            array[i] = temp->data;
-            temp = temp->next;
+            array[i] = cursor->data;
+            cursor = cursor->next;
         }
         return array;
     }
