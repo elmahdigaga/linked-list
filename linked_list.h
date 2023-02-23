@@ -111,9 +111,9 @@ class LinkedList {
             return *this;
         }
 
-        cursor = head;
-        head = cursor->next;
-        delete cursor;
+        Node<T>* temp = head;
+        head = temp->next;
+        delete temp;
         --size;
         return *this;
     }
@@ -124,20 +124,20 @@ class LinkedList {
             return *this;
         }
 
-        cursor = head;
+        Node<T>* temp = head;
         if (head->next == nullptr) {
             head = nullptr;
-            delete cursor;
+            delete temp;
             --size;
             return *this;
         }
-        Node<T>* temp2;
-        while (cursor->next != nullptr) {
-            temp2 = cursor;
-            cursor = cursor->next;
+
+        while (temp->next != nullptr) {
+            cursor = temp;
+            temp = temp->next;
         }
-        temp2->next = nullptr;
-        delete cursor;
+        cursor->next = nullptr;
+        delete temp;
         --size;
         return *this;
     }
@@ -154,14 +154,13 @@ class LinkedList {
             return *this;
         }
 
-        cursor = head;
-        Node<T>* temp2;
+        Node<T>* temp = head;
         for (int i = 0; i < pos; ++i) {
-            temp2 = cursor;
-            cursor = cursor->next;
+            cursor = temp;
+            temp = temp->next;
         }
-        temp2->next = cursor->next;
-        delete cursor;
+        cursor->next = temp->next;
+        delete temp;
         --size;
         return *this;
     }
@@ -217,7 +216,7 @@ class LinkedList {
     }
 
     bool IsEmpty() {
-        return head == nullptr ? true : false;
+        return (head == nullptr);
     }
 
     T* ToArray() {
