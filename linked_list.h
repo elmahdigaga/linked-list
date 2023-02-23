@@ -84,7 +84,7 @@ class LinkedList {
 
     LinkedList& InsertPos(T value, int pos) {
         if (pos > size) {
-            std::cerr << "Invalid position\n";
+            std::cout << "Invalid position\n";
             return *this;
         } else if (pos == 0) {
             InsertBegin(value);
@@ -107,7 +107,7 @@ class LinkedList {
 
     LinkedList& RemoveBegin() {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return *this;
         }
 
@@ -120,7 +120,7 @@ class LinkedList {
 
     LinkedList& RemoveEnd() {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return *this;
         }
 
@@ -144,7 +144,7 @@ class LinkedList {
 
     LinkedList& RemovePos(int pos) {
         if (pos >= size) {
-            std::cerr << "Invalid position\n";
+            std::cout << "Invalid position\n";
             return *this;
         } else if (pos == 0) {
             RemoveBegin();
@@ -168,11 +168,11 @@ class LinkedList {
 
     T Get(int pos) {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return 0;
         }
         if (pos >= size) {
-            std::cerr << "Invalid index\n";
+            std::cout << "Invalid index\n";
             return 0;
         }
 
@@ -185,7 +185,7 @@ class LinkedList {
 
     int Find(T value) {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return -1;
         }
         int pos = 0;
@@ -203,13 +203,13 @@ class LinkedList {
 
     LinkedList& Delete(T value) {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return *this;
         }
 
         int pos = Find(value);
         if (pos == -1) {
-            std::cerr << "Value not found\n";
+            std::cout << "Value not found\n";
             return *this;
         }
         RemovePos(pos);
@@ -222,7 +222,7 @@ class LinkedList {
 
     T* ToArray() {
         if (head == nullptr) {
-            std::cerr << "List is empty\n";
+            std::cout << "List is empty\n";
             return nullptr;
         }
 
